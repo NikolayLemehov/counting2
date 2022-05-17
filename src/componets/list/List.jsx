@@ -1,10 +1,16 @@
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {delOperation} from "../../asyncAction/delOperation";
 
-const List = (props) => {
-  console.log(props.operations)
+const List = () => {
+  const dispatch = useDispatch()
+  const operations = useSelector(state => state.operation.operations)
   return (
     <ul>
-      {props.operations.map(it => <li key={it._id}>{it.text}</li>)}
+      {operations.map(it => <li key={it._id}>
+        {it.text}
+        <button type={'button'} onClick={() => dispatch(delOperation(it._id))}>Del</button>
+      </li>)}
     </ul>
   );
 };
