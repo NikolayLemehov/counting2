@@ -4,7 +4,7 @@ import {delOperationAction} from "../reducers/operationReducer";
 
 export const delOperation = (id) => {
   return (dispatch) => {
-    axios.delete(`${URL_API}api/auth/request/id`, {data: {id}})
+    axios.delete(`${URL_API}api/operation/id`, {data: {id}})
       .then(res => dispatch(delOperationAction(res.data.operation._id)))
       .catch(e => console.log('error', e))
   }

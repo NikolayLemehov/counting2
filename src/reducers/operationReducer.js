@@ -14,7 +14,6 @@ export default function operationReducer (state = defaultState, action) {
     case DEL_OPERATION:
       return {...state, operations: state.operations.filter(it => it._id !== action.payload)}
     case UPDATE_OPERATIONS:
-      console.log(state, action.payload)
       return {...state, operations: [...action.payload]}
     default: return state
   }
