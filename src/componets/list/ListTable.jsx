@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {delOperation} from "../../asyncAction/delOperation";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -8,7 +7,9 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
-import {fetchOperations} from "../../asyncAction/fetchOperations";
+import {IconButton} from "@mui/material";
+import {Delete as DeleteIcon} from "@mui/icons-material";
+import {delOperation} from "../../asyncAction/delOperation";
 
 const ListTable = () => {
   const dispatch = useDispatch()
@@ -36,7 +37,13 @@ const ListTable = () => {
                 </TableCell>
                 <TableCell align="right">{row.value}</TableCell>
                 <TableCell align="right">
-                  <button onClick={() => dispatch(delOperation(row._id))}>x</button>
+                  <IconButton
+                    variant="outlined"
+                    color="error"
+                    onClick={() => dispatch(delOperation(row._id))}
+                  >
+                    <DeleteIcon/>
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
