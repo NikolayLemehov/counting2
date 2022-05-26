@@ -27,9 +27,15 @@ const MyForm = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, actions) => {
           const {date, value} = values
           dispatch(addOperation({date, value}))
+          actions.resetForm({
+            values: {
+              value: '',
+              date: formatDate(new Date()),
+            }
+          })
         }}
       >
         <Form>
