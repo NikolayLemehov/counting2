@@ -38,7 +38,7 @@ const ListTable = () => {
                 <TableCell component="td">{row.date}</TableCell>
                 <TableCell component="td" align="right">{row.value}</TableCell>
                 <TableCell component="td" align="right">
-                  {row.total}{row._id.toString()}
+                  {row.total}
                 </TableCell>
                 <TableCell align="right">
                   <Box>
