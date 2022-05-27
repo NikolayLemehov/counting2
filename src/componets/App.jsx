@@ -10,12 +10,12 @@ function App() {
   useEffect(() => dispatch(fetchOperations()), [dispatch])
 
   return (
-    <h1>Counting</h1>
-    // <Container>
-    //
-    //   {/*<MyForm/>*/}
-    //   {/*<ListTable/>*/}
-    // </Container>
+    <Container>
+      <h1>Counting</h1>
+
+      {/*<MyForm/>*/}
+      {/*<ListTable/>*/}
+    </Container>
   );
 }
 
