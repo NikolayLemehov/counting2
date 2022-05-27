@@ -12,8 +12,8 @@ function App() {
   return (
     <Container>
       <h1>Counting</h1>
-      <MyForm/>
-      <ListTable/>
+      {/*<MyForm/>*/}
+      {/*<ListTable/>*/}
     </Container>
   );
 }
