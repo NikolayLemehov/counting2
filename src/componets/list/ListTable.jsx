@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
-import {Box, IconButton, Stack} from "@mui/material";
+import {Box, IconButton, Stack, Tooltip} from "@mui/material";
 import {Delete as DeleteIcon, Edit as EditIcon} from "@mui/icons-material";
 import {delOperation} from "../../asyncAction/delOperation";
 import {updateOperation} from "../../asyncAction/updateOperation";
@@ -43,22 +43,26 @@ const ListTable = () => {
                 <TableCell align="right">
                   <Box>
                     <Stack direction="row" sx={{justifyContent: "flex-end"}} spacing={1}>
-                      <IconButton
-                        variant="outlined"
-                        color="primary"
-                        onClick={() => dispatch(updateOperation(row._id))}
-                        disabled={row.editLoading}
-                      >
-                        <EditIcon/>
-                      </IconButton>
-                      <IconButton
-                        variant="outlined"
-                        color="error"
-                        onClick={() => dispatch(delOperation(row._id))}
-                        disabled={row.deleteLoading}
-                      >
-                        <DeleteIcon/>
-                      </IconButton>
+                      <Tooltip title="Refresh date-time edition">
+                        <IconButton
+                          variant="outlined"
+                          color="primary"
+                          onClick={() => dispatch(updateOperation(row._id))}
+                          disabled={row.editLoading}
+                        >
+                          <EditIcon/>
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Delete">
+                        <IconButton
+                          variant="outlined"
+                          color="error"
+                          onClick={() => dispatch(delOperation(row._id))}
+                          disabled={row.deleteLoading}
+                        >
+                          <DeleteIcon/>
+                        </IconButton>
+                      </Tooltip>
                     </Stack>
                   </Box>
                 </TableCell>
