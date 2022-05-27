@@ -24,7 +24,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run build & nodemon index.js",
+    "dev_start": "react-scripts start",
     "build": "react-scripts build",
     "devc_server": "npm run build & nodemon index.js",
     "test": "react-scripts test",
