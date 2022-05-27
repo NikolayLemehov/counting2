@@ -1,11 +1,15 @@
 import {URL_API} from "../config";
 import axios from "axios";
-import {delOperationAction} from "../reducers/operationReducer";
+import {delOperationAction, setDeleteBtnLoading} from "../reducers/operationReducer";
 
 export const delOperation = (id) => {
   return (dispatch) => {
+    dispatch(setDeleteBtnLoading({id, flag: true}))
     axios.delete(`${URL_API}api/operation/id`, {data: {id}})
       .then(res => dispatch(delOperationAction(res.data.operation._id)))
-      .catch(e => console.log('error', e))
+      .catch(e => {
+        dispatch(setDeleteBtnLoading({id, flag: false}))
+        console.log('error', e)
+      })
   }
 }

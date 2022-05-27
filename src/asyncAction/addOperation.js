@@ -4,7 +4,6 @@ import {updateOperationsAction} from "../reducers/operationReducer";
 import Operation from "../adapters/Operation";
 
 export const addOperation = (data) => {
-  console.log(data)
   return (dispatch) => {
     axios.post(`${URL_API}api/operation/item`, Operation.getRawItem(data))
       .then(res => dispatch(updateOperationsAction(Operation.getAdoptedList(res.data.operations))))

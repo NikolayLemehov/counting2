@@ -6,6 +6,8 @@ export default class Operation {
       _id: raw["_id"],
       date: formatDate(raw["date"]),
       value: raw["value"],
+      editLoading: false,
+      deleteLoading: false,
     }
   }
 

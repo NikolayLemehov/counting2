@@ -15,6 +15,7 @@ import {updateOperation} from "../../asyncAction/updateOperation";
 const ListTable = () => {
   const dispatch = useDispatch()
   const operations = useSelector(state => state.operation.operations)
+  // console.log(operations)
 
   return (
     <>
@@ -37,7 +38,7 @@ const ListTable = () => {
                 <TableCell component="td">{row.date}</TableCell>
                 <TableCell component="td" align="right">{row.value}</TableCell>
                 <TableCell component="td" align="right">
-                  {row.total}
+                  {row.total}{row._id.toString()}
                 </TableCell>
                 <TableCell align="right">
                   <Box>
@@ -46,6 +47,7 @@ const ListTable = () => {
                         variant="outlined"
                         color="primary"
                         onClick={() => dispatch(updateOperation(row._id))}
+                        disabled={row.editLoading}
                       >
                         <EditIcon/>
                       </IconButton>
@@ -53,6 +55,7 @@ const ListTable = () => {
                         variant="outlined"
                         color="error"
                         onClick={() => dispatch(delOperation(row._id))}
+                        disabled={row.deleteLoading}
                       >
                         <DeleteIcon/>
                       </IconButton>
