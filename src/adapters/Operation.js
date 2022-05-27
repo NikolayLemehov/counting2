@@ -18,6 +18,15 @@ export default class Operation {
   }
 
   static getAdoptedList(rawList) {
-    return rawList.map(raw => Operation.getAdoptedItem(raw))
+    const items = rawList.map(raw => Operation.getAdoptedItem(raw))
+
+    return items.reduce((acc, it, i) => {
+      const prevTotal = i === 0 ? 0 : items[i - 1].total
+
+      items[i].total = prevTotal + it.value
+
+      acc.push(items[i])
+      return acc
+    }, [])
   }
 }

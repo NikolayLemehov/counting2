@@ -21,5 +21,4 @@ export default function operationReducer (state = defaultState, action) {
 
 export const addOperationAction = (payload) => ({type: ADD_OPERATION, payload})
 export const delOperationAction = (payload) => ({type: DEL_OPERATION, payload})
-export const updateOperationAction = (payload) => ({type: UPDATE_OPERATIONS, payload})
-
+export const updateOperationsAction = (payload) => ({type: UPDATE_OPERATIONS, payload})

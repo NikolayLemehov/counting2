@@ -7,9 +7,10 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
-import {IconButton} from "@mui/material";
-import {Delete as DeleteIcon} from "@mui/icons-material";
+import {Box, IconButton, Stack} from "@mui/material";
+import {Delete as DeleteIcon, Edit as EditIcon} from "@mui/icons-material";
 import {delOperation} from "../../asyncAction/delOperation";
+import {updateOperation} from "../../asyncAction/updateOperation";
 
 const ListTable = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ const ListTable = () => {
             <TableRow>
               <TableCell>Date</TableCell>
               <TableCell align="right">Value</TableCell>
+              <TableCell align="right">Total</TableCell>
               <TableCell />
             </TableRow>
           </TableHead>
@@ -32,18 +34,30 @@ const ListTable = () => {
                 key={row._id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
-                  {row.date}
+                <TableCell component="td">{row.date}</TableCell>
+                <TableCell component="td" align="right">{row.value}</TableCell>
+                <TableCell component="td" align="right">
+                  {row.total}
                 </TableCell>
-                <TableCell align="right">{row.value}</TableCell>
                 <TableCell align="right">
-                  <IconButton
-                    variant="outlined"
-                    color="error"
-                    onClick={() => dispatch(delOperation(row._id))}
-                  >
-                    <DeleteIcon/>
-                  </IconButton>
+                  <Box>
+                    <Stack direction="row" sx={{justifyContent: "flex-end"}} spacing={1}>
+                      <IconButton
+                        variant="outlined"
+                        color="primary"
+                        onClick={() => dispatch(updateOperation(row._id))}
+                      >
+                        <EditIcon/>
+                      </IconButton>
+                      <IconButton
+                        variant="outlined"
+                        color="error"
+                        onClick={() => dispatch(delOperation(row._id))}
+                      >
+                        <DeleteIcon/>
+                      </IconButton>
+                    </Stack>
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}
