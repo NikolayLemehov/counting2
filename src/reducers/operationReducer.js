@@ -10,7 +10,11 @@ const defaultState = {
   hasListLoading: true,
 }
 
-const setEditBtnLoadingCase = (state, payload) => {
+const addOperation = (state, operation) => ({...state, operations: [...state.operations, operation]}) 
+const delOperation = (state, id) => ({...state, operations: state.operations.filter(it => it._id !== id)}) 
+const updateOperation = (state, operations) => ({...state, operations, hasListLoading: false}) 
+const setListLoading = (state, hasListLoading) => ({...state, hasListLoading})
+const setEditBtnLoading = (state, payload) => {
   const newOperations = [...state.operations]
   const operationIndex = newOperations.findIndex(it => it._id === payload.id)
   newOperations[operationIndex].editLoading = payload.flag
@@ -25,15 +29,11 @@ const setDeleteBtnLoadingCase = (state, payload) => {
 
 export default function operationReducer (state = defaultState, action) {
   switch (action.type) {
-    case ADD_OPERATION:
-      return {...state, operations: [...state.operations, action.payload]}
-    case DEL_OPERATION:
-      return {...state, operations: state.operations.filter(it => it._id !== action.payload)}
-    case UPDATE_OPERATIONS:
-      return {...state, operations: [...action.payload], hasListLoading: false}
-    case SET_LIST_LOADING:
-      return {...state, hasListLoading: action.payload}
-    case SET_EDIT_BTN_LOADING: return setEditBtnLoadingCase(state, action.payload)
+    case ADD_OPERATION: return addOperation(state, action.payload)
+    case DEL_OPERATION: return delOperation(state, action.payload)
+    case UPDATE_OPERATIONS: return updateOperation(state, action.payload)
+    case SET_LIST_LOADING: return setListLoading(state, action.payload)
+    case SET_EDIT_BTN_LOADING: return setEditBtnLoading(state, action.payload)
     case SET_DELETE_BTN_LOADING: return setDeleteBtnLoadingCase(state, action.payload)
     default: return state
   }
@@ -42,6 +42,6 @@ export default function operationReducer (state = defaultState, action) {
 export const addOperationAction = (payload) => ({type: ADD_OPERATION, payload})
 export const delOperationAction = (payload) => ({type: DEL_OPERATION, payload})
 export const updateOperationsAction = (payload) => ({type: UPDATE_OPERATIONS, payload})
-export const setListLoading = (payload) => ({type: SET_LIST_LOADING, payload})
-export const setEditBtnLoading = (payload) => ({type: SET_EDIT_BTN_LOADING, payload})
-export const setDeleteBtnLoading = (payload) => ({type: SET_DELETE_BTN_LOADING, payload})
+export const setListLoadingAction = (payload) => ({type: SET_LIST_LOADING, payload})
+export const setEditBtnLoadingAction = (payload) => ({type: SET_EDIT_BTN_LOADING, payload})
+export const setDeleteBtnLoadingAction = (payload) => ({type: SET_DELETE_BTN_LOADING, payload})
