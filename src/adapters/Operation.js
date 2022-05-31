@@ -3,7 +3,7 @@ import {formatDate} from "../utils/formatDate";
 export default class Operation {
   static getAdoptedItem(raw) {
     return {
-      _id: raw["_id"],
+      id: raw["_id"],
       date: formatDate(raw["date"]),
       value: raw["value"],
       editLoading: false,
@@ -13,7 +13,7 @@ export default class Operation {
 
   static getRawItem(data) {
     return {
-      _id: data._id,
+      id: data._id,
       date: formatDate(data.date),
       value: data.value,
     }
